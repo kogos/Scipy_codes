@@ -4,10 +4,15 @@ print("Hello world")
 print("Hello Ghana")
 print("This is not easy")
 #---------Declaring Variables-------
-text=("name1")
+text=("Student name")
+#---------List--------
 
 #---------DeclaringFunctions--------
-
+def prime(a,b):
+    for x in range(a,b):
+        if all(x%i!=0 for i in range(2,x)):
+            print(x)
 #---------Printing variables--------
 print(text)
-#---------Printing functions--------
+#---------Calling functions--------
+prime(2,100)
