@@ -43,3 +43,5 @@ b = matrix ( '3,7;4,8')
 print(a)
 print(b+a)#Adding matrices and printing the output
 #============END===============
+import geom_formulae
+print(geom_formulae.circle_area(2))
