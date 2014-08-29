@@ -3,19 +3,7 @@ from numpy import *
 from numbers import Number
 
 
-def square_perimeter(side: Number) ->Number:
-    """
-    Calculate perimeter of a square from side length.
-    @param side: the side length
-    @return: the perimeter (same units as side length)
-    >>> square_perimeter(4)
-    16
-    """
-    return 4*side
-print(square_perimeter(4))
-
-
-def rectangle_area(length: Number, width: Number) ->Number:
+def rectangle_area(length: int, width: int) ->Number:
     """
     It calculates the area of a rectangle given length and width
     :param length: the length of a rectangle
@@ -24,12 +12,12 @@ def rectangle_area(length: Number, width: Number) ->Number:
     >>> rectangle_area(10,5)
     50
     """
-    return length * width
-print(rectangle_area(10.5, 5.2))
+    return length*width
+print(rectangle_area(10, 5))
 
 
 def solid_cone_surface_area(radius: Number, slant_height: Number) ->Number:
-    """
+    """"
     It calculates the area of a rectangle given length and width
     :param radius: base radius of the cone
     :param slant_height: slant height of the cone
@@ -38,7 +26,7 @@ def solid_cone_surface_area(radius: Number, slant_height: Number) ->Number:
     163.36281798666926
     """
     return pi*radius*radius+pi*radius*slant_height
-print(solid_cone_surface_area(4, 9))
+print(solid_cone_surface_area(4.9, 9.))
 
 
 def sphere_volume(radius: Number) ->Number:
@@ -46,9 +34,18 @@ def sphere_volume(radius: Number) ->Number:
     Calculates the volume of a sphere.
     :param radius: radius of the sphere
     :return: the volume of the sphere (in cubic units of the radius)
-    >>> sphere_volume(7)
+    >>> sphere_volume (7)
     1436.7550402417319
     """
     return 4*pi*radius*radius*radius/3
 print(sphere_volume(7))
 
+
+def circle_area(radius: Number) ->Number:
+    """
+    Calculates the area of a circle.
+    :param radius: radius of the circle
+    :return: area of the circle(in units of it's radius)
+    """
+    return pi*radius**2
+print(circle_area(7))
