@@ -27,9 +27,19 @@ def triangle(a,b,c):
     area=sqrt(s*(s-a)*(s-b)*(s-c))
     print("The area of the triangle is: ",area,"sq. units")
 triangle(5,12,13)
-#---------LISTS---------------------===
+#Getting roots of a quadratic equation
+def roots(a,b,c):
+    root1=((-b+0j)+(sqrt((b+0j)*(b+0j)-4*(a+0j)*(c+0j))))/2*(a+0j)
+    root2=((-b+0j)-(sqrt((b+0j)*(b+0j)-4*(a+0j)*(c+0j))))/2*(a+0j)
+    print(("Root1= "),root1)
+    print(("Root2= "),root2)
+roots(1,3,2)
+#---------LISTS-----------------------
 listdata=["numbers","functions","variables"]
 print(listdata[2]) #Indexing starts at zero, element[1] is in position 2.
-
-
-
+#-------MATRICES----------------------
+a=matrix('2,3;4,6')#Defining a matrix
+b=matrix('3,7;4,8')
+print(a)
+print(b+a)#Adding matrices and printing the output
+#============END===============
