@@ -39,7 +39,7 @@ listdata=["numbers","functions","variables"]
 print(listdata[2]) #Indexing starts at zero, element[1] is in position 2.
 #-------MATRICES----------------------
 a=matrix('2,3;4,6')#Defining a matrix
-b=matrix('3,7;4,8')
+b = matrix ( '3,7;4,8')
 print(a)
 print(b+a)#Adding matrices and printing the output
 #============END===============
