@@ -61,23 +61,32 @@ def circle_area(radius: Number) -> Number:
 print(circle_area(7))
 
 
-def triangle_area(side_a=None, side_b=None, side_c=None, height=None, theta=None) -> Number:
+def triangle_area(side_a=None, side_b=None, side_c=None, height=None, angle_theta=None) -> Number:
     """
-    Calculates the area of a triangle given three sides
-    :rtype : object
+    Calculates the area of a triangle given adequate arguments
     :param side_a: dimension of first side of the triangle
     :param side_b: dimension of second side of the triangle
     :param side_c: dimension of third side of the triangle
     :param height: height of the triangle
-    :param theta: angle given in triangle
+    :param angle_theta: angle given in triangle (in radians)
     :return: The area of the triangle (in square units of the sides)
+    >>>triangle_area(side_a=4, side_b=3,side_c=5)
+    6.0
+    >>>triangle_area(side_a=4, side_b=3,angle_theta=pi/2)
+    6.0
+    >>>triangle_area(side_a=4, height=3)
+    6.0
     """
     if (side_a is not None) & (side_b is not None) & (side_c is not None):
         s = (side_a + side_b + side_c) / 2
         area = (s * (s - side_a) * (s - side_b) * (s - side_c))**(1/2)
-    elif (side_a is not None) & (side_b is not None) & (theta is not None):
-        area = 0.5*side_a*side_b*sin(theta)
-    else:
+        return area
+    elif (side_a is not None) & (side_b is not None) & (angle_theta is not None):
+        area = 0.5*side_a*side_b*sin(angle_theta)
+        return area
+    elif (side_a is not None) & (height is not None):
         area = side_a * height / 2
-    return area
-print (triangle_area(side_a=3, side_b=4, theta=pi/2))
+        return area
+    else:
+        return "The arguments given are inadequate to compute the area"
+print(triangle_area(side_a=55))
