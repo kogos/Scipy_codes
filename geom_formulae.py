@@ -145,13 +145,16 @@ def regular_pyramid_volume(base_length: float, base_width: float, height: float)
     28.0
     """
     return base_length*base_width*height/3
-print(rectangle_area(10, 5))
-print(solid_cone_surface_area(4.9, 9.))
-print(sphere_volume(7))
-print(circle_area(7))
-print(triangle_area(side_a=4, side_b=3, side_c=5))
-print(cuboid_volume(3, 4, 5))
-print(cube_surface_area(3))
-print(semi_circle_perimeter(diameter=7))
-print(trapezium_area(5, 10, 6))
-print(regular_pyramid_volume(3, 4, 7))
+
+
+if __name__ == "__main__":
+    print(rectangle_area(10, 5))
+    print(solid_cone_surface_area(4.9, 9.))
+    print(sphere_volume(7))
+    print(circle_area(7))
+    print(triangle_area(side_a=4, side_b=3, side_c=5))
+    print(cuboid_volume(3, 4, 5))
+    print(cube_surface_area(3))
+    print(semi_circle_perimeter(diameter=7))
+    print(trapezium_area(5, 10, 6))
+    print(regular_pyramid_volume(3, 4, 7))
