@@ -13,8 +13,6 @@ def rectangle_area(length: int, width: int) -> Number:
     50
     """
     return length * width
-
-
 print(rectangle_area(10, 5))
 
 
@@ -28,8 +26,6 @@ def solid_cone_surface_area(radius: Number, slant_height: Number) -> Number:
     163.36281798666926
     """
     return pi * radius * radius + pi * radius * slant_height
-
-
 print(solid_cone_surface_area(4.9, 9.))
 
 
@@ -42,8 +38,6 @@ def sphere_volume(radius: Number) -> Number:
     1436.7550402417319
     """
     return 4 * pi * radius * radius * radius / 3
-
-
 print(sphere_volume(7))
 
 
@@ -56,8 +50,6 @@ def circle_area(radius: Number) -> Number:
     153.93804002589985
     """
     return pi * radius ** 2
-
-
 print(circle_area(7))
 
 
