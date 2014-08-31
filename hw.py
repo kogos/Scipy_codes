@@ -1,8 +1,8 @@
 __author__ = 'stephen'
 from numpy import *
 #---------DECLARING VARIABLES-------
-text=("Student name")#string variable
-star=("Hello Ghana")
+text = "Student name" # string variable
+star = "Hello Ghana"
 y=50#Numeric variable
 x=20
 print(text)#printing contents of variables(text)
@@ -41,7 +41,19 @@ print(listdata[2]) #Indexing starts at zero, element[1] is in position 2.
 a=matrix('2,3;4,6')#Defining a matrix
 b = matrix ( '3,7;4,8')
 print(a)
-print(b+a)#Adding matrices and printing the output
+print(b+a) # Adding matrices and printing the output
 #============END===============
 import geom_formulae
 print(geom_formulae.circle_area(2))
+
+import turtle
+
+side = 50
+
+i = 0;
+while (i < 4):
+    turtle.forward(side)
+    turtle.left(90)
+    i = i+1
+
+turtle.done()
