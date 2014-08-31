@@ -150,17 +150,31 @@ def regular_pyramid_volume(base_length: float, base_width: float, height: float)
     return base_length*base_width*height/3
 
 
+def ellipsoid_volume(major_axis: float, minor_axis: float, vertical_axis: float) ->Number:
+    """
+    Calculates the volume of an ellipsoid
+    @param major_axis: the major axis of the ellipsoid
+    @param minor_axis: the minor axis of the ellipsoid
+    @param vertical_axis:the vertical axis of the ellipsoid
+    @return: The area of the ellipsoid (in cubic units of input parameters)
+    >>>ellipsoid_volume(8,5,3)
+    502.65482457436684
+    """
+    return 4*pi*major_axis*minor_axis*vertical_axis/3
+
+
 if __name__ == "__main__":
-    print("Area of a rectangle length=10 units and width=5 units= ", rectangle_area(10, 5), " square units")
-    print("Surface area of solid cone radius=4 units and slant_height=9 units= ", solid_cone_surface_area(4, 9),
+    print("Area of a rectangle length=10 units and width=5 units\n", rectangle_area(10, 5), " square units")
+    print("Surface area of solid cone radius=4 units and slant_height=9 units\n", solid_cone_surface_area(4, 9),
           " square units")
-    print("Volume of sphere radius=7 units= ", sphere_volume(7), " cubic units")
-    print("Area of circle radius=7 units= ", circle_area(7), " square units")
-    print("Area of triangle sides(4,3,5) units= ", triangle_area(side_a=1, side_b=2, side_c=3), " square units")
-    print("Volume of a cuboid sides(3,4,6) units= ", cuboid_volume(3, 4, 5), " cubic units")
-    print("Surface area of a cube side=3 units= ", cube_surface_area(3), " square units")
-    print("Perimeter of semi circle diameter=7 units= ", semi_circle_perimeter(diameter=7), " units")
-    print("Area of trapezium parallel_side_1=5 units, parallel_side_2=10 units, height=6 units = ",
+    print("Volume of sphere radius=7 units\n", sphere_volume(7), " cubic units")
+    print("Area of circle radius=7 units\n", circle_area(7), " square units")
+    print("Area of triangle sides(4,3,5) units\n", triangle_area(side_a=1, side_b=2, side_c=3), " square units")
+    print("Volume of a cuboid sides(3,4,6) units\n", cuboid_volume(3, 4, 5), " cubic units")
+    print("Surface area of a cube side=3 units\n", cube_surface_area(3), " square units")
+    print("Perimeter of semi circle diameter=7 units\n", semi_circle_perimeter(diameter=7), " units")
+    print("Area of trapezium parallel_side_1=5 units, parallel_side_2=10 units, height=6 units\n",
           trapezium_area(5, 10, 6), " square units")
-    print("Volume of a regular pyramid base_length= 3 units, base_width=4 units, height=7 units =  ",
+    print("Volume of a regular pyramid base_length= 3 units, base_width=4 units, height=7 units\n",
           regular_pyramid_volume(3, 4, 7), " cubic units")
+    print("Volume of an ellipsoid with dimensions (8,5,3) units\n", ellipsoid_volume(8, 5, 3), " cubic units")
