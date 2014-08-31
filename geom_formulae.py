@@ -24,7 +24,7 @@ def solid_cone_surface_area(radius: Number, slant_height: Number) -> Number:
     >>> solid_cone_surface_area(4,9)
     163.36281798666926
     """
-    return pi * radius * radius + pi * radius * slant_height
+    return pi * (radius**2) + pi * radius * slant_height
 
 
 def sphere_volume(radius: Number) -> Number:
@@ -35,7 +35,7 @@ def sphere_volume(radius: Number) -> Number:
     >>> sphere_volume (7)
     1436.7550402417319
     """
-    return 4 * pi * radius * radius * radius / 3
+    return 4 * pi * (radius**3) / 3
 
 
 def circle_area(radius: Number) -> Number:
@@ -46,7 +46,7 @@ def circle_area(radius: Number) -> Number:
     >>> circle_area(7)
     153.93804002589985
     """
-    return pi * radius ** 2
+    return pi * (radius ** 2)
 
 
 def triangle_area(side_a=None, side_b=None, side_c=None, height=None, angle_theta=None) -> Number:
@@ -66,9 +66,12 @@ def triangle_area(side_a=None, side_b=None, side_c=None, height=None, angle_thet
     6.0
     """
     if (side_a is not None) & (side_b is not None) & (side_c is not None):
-        s = (side_a + side_b + side_c) / 2
-        area = (s * (s - side_a) * (s - side_b) * (s - side_c))**(1/2)
-        return area
+        if ((side_a + side_b) > side_c) & ((side_a + side_c) > side_b) & ((side_b + side_c) > side_a):
+            s = (side_a + side_b + side_c) / 2
+            area = (s * (s - side_a) * (s - side_b) * (s - side_c))**(1/2)
+            return area
+        else:
+            return "The sum of two sides of a triangle must be greater that the third side"
     elif (side_a is not None) & (side_b is not None) & (angle_theta is not None):
         area = 0.5*side_a*side_b*sin(angle_theta)
         return area
@@ -148,13 +151,16 @@ def regular_pyramid_volume(base_length: float, base_width: float, height: float)
 
 
 if __name__ == "__main__":
-    print(rectangle_area(10, 5))
-    print(solid_cone_surface_area(4.9, 9.))
-    print(sphere_volume(7))
-    print(circle_area(7))
-    print(triangle_area(side_a=4, side_b=3, side_c=5))
-    print(cuboid_volume(3, 4, 5))
-    print(cube_surface_area(3))
-    print(semi_circle_perimeter(diameter=7))
-    print(trapezium_area(5, 10, 6))
-    print(regular_pyramid_volume(3, 4, 7))
+    print("Area of a rectangle length=10 units and width=5 units= ", rectangle_area(10, 5), " square units")
+    print("Surface area of solid cone radius=4 units and slant_height=9 units= ", solid_cone_surface_area(4, 9),
+          " square units")
+    print("Volume of sphere radius=7 units= ", sphere_volume(7), " cubic units")
+    print("Area of circle radius=7 units= ", circle_area(7), " square units")
+    print("Area of triangle sides(4,3,5) units= ", triangle_area(side_a=1, side_b=2, side_c=3), " square units")
+    print("Volume of a cuboid sides(3,4,6) units= ", cuboid_volume(3, 4, 5), " cubic units")
+    print("Surface area of a cube side=3 units= ", cube_surface_area(3), " square units")
+    print("Perimeter of semi circle diameter=7 units= ", semi_circle_perimeter(diameter=7), " units")
+    print("Area of trapezium parallel_side_1=5 units, parallel_side_2=10 units, height=6 units = ",
+          trapezium_area(5, 10, 6), " square units")
+    print("Volume of a regular pyramid base_length= 3 units, base_width=4 units, height=7 units =  ",
+          regular_pyramid_volume(3, 4, 7), " cubic units")
