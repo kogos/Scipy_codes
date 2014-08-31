@@ -1,6 +1,7 @@
 __author__ = 'stephen'
 from numpy import *
 from numbers import Number
+#-----------------------------Function 1-----------------------------------------
 
 
 def rectangle_area(length: float, width: float) -> Number:
@@ -13,6 +14,7 @@ def rectangle_area(length: float, width: float) -> Number:
     50
     """
     return length * width
+#-----------------------------Function 2-----------------------------------------
 
 
 def solid_cone_surface_area(radius: Number, slant_height: Number) -> Number:
@@ -25,6 +27,7 @@ def solid_cone_surface_area(radius: Number, slant_height: Number) -> Number:
     163.36281798666926
     """
     return pi * (radius**2) + pi * radius * slant_height
+#-----------------------------Function 3-----------------------------------------
 
 
 def sphere_volume(radius: Number) -> Number:
@@ -36,20 +39,22 @@ def sphere_volume(radius: Number) -> Number:
     1436.7550402417319
     """
     return 4 * pi * (radius**3) / 3
+#-----------------------------Function 4-----------------------------------------
 
 
 def circle_area(radius: Number) -> Number:
     """
     Calculates the area of a circle.
     @param radius: radius of the circle
-    @return: area of the circle(in units of it's radius)
+    @return: area of the circle(in square units of it's radius)
     >>> circle_area(7)
     153.93804002589985
     """
     return pi * (radius ** 2)
+#-----------------------------Function 5-----------------------------------------
 
 
-def triangle_area(side_a=None, side_b=None, side_c=None, height=None, angle_theta=None) -> Number:
+def triangle_area(side_a=None, side_b=None, side_c=None, height=None, angle_theta=None, base=None) -> Number:
     """
     Calculates the area of a triangle given adequate arguments
     @param side_a: dimension of first side of the triangle
@@ -57,12 +62,13 @@ def triangle_area(side_a=None, side_b=None, side_c=None, height=None, angle_thet
     @param side_c: dimension of third side of the triangle
     @param height: height of the triangle
     @param angle_theta: angle given in triangle (in radians)
+    @param base: base of the triangle
     @return: The area of the triangle (in square units of the sides)
     >>>triangle_area(side_a=4, side_b=3,side_c=5)
     6.0
     >>>triangle_area(side_a=4, side_b=3,angle_theta=pi/2)
     6.0
-    >>>triangle_area(side_a=4, height=3)
+    >>>triangle_area(base=4, height=3)
     6.0
     """
     if (side_a is not None) & (side_b is not None) & (side_c is not None):
@@ -76,10 +82,11 @@ def triangle_area(side_a=None, side_b=None, side_c=None, height=None, angle_thet
         area = 0.5*side_a*side_b*sin(angle_theta)
         return area
     elif (side_a is not None) & (height is not None):
-        area = side_a * height / 2
+        area = base * height / 2
         return area
     else:
         return "The arguments given are inadequate to compute the area"
+#-----------------------------Function 6-----------------------------------------
 
 
 def cuboid_volume(length: float, width: float, height: float) ->Number:
@@ -89,10 +96,11 @@ def cuboid_volume(length: float, width: float, height: float) ->Number:
     @param width: the width of a cuboid
     @param height: the height of a cuboid
     @return:the volume of a cuboid (in cubic units of the dimensions)
-    >>> cuboid_volume(3, 4, 5)
+    >>> cuboid_volume(5, 4, 3)
     60
     """
     return length*width*height
+#-----------------------------Function 7-----------------------------------------
 
 
 def cube_surface_area(side: Number) ->Number:
@@ -104,6 +112,7 @@ def cube_surface_area(side: Number) ->Number:
      54
     """
     return 6*side**2
+#-----------------------------Function 8-----------------------------------------
 
 
 def semi_circle_perimeter(radius=None, diameter=None):
@@ -122,6 +131,7 @@ def semi_circle_perimeter(radius=None, diameter=None):
     else:
         perimeter = pi*diameter/2+diameter
     return perimeter
+#-----------------------------Function 9-----------------------------------------
 
 
 def trapezium_area(parallel_side_1: float, parallel_side_2: float, height: float) ->Number:
@@ -135,11 +145,12 @@ def trapezium_area(parallel_side_1: float, parallel_side_2: float, height: float
     45.0
     """
     return 0.5*(parallel_side_1+parallel_side_2)*height
+#-----------------------------Function 10-----------------------------------------
 
 
 def regular_pyramid_volume(base_length: float, base_width: float, height: float) ->Number:
     """
-
+    Calculates the volume of a regular pyramid
     @param base_length: base length of the pyramid
     @param base_width: base width of the pyramid
     @param height: height of the pyramid
@@ -148,6 +159,7 @@ def regular_pyramid_volume(base_length: float, base_width: float, height: float)
     28.0
     """
     return base_length*base_width*height/3
+#-----------------------------Function 11-----------------------------------------
 
 
 def ellipsoid_volume(major_axis: float, minor_axis: float, vertical_axis: float) ->Number:
@@ -161,20 +173,4 @@ def ellipsoid_volume(major_axis: float, minor_axis: float, vertical_axis: float)
     502.65482457436684
     """
     return 4*pi*major_axis*minor_axis*vertical_axis/3
-
-
-if __name__ == "__main__":
-    print("Area of a rectangle length=10 units and width=5 units\n", rectangle_area(10, 5), " square units")
-    print("Surface area of solid cone radius=4 units and slant_height=9 units\n", solid_cone_surface_area(4, 9),
-          " square units")
-    print("Volume of sphere radius=7 units\n", sphere_volume(7), " cubic units")
-    print("Area of circle radius=7 units\n", circle_area(7), " square units")
-    print("Area of triangle sides(4,3,5) units\n", triangle_area(side_a=1, side_b=2, side_c=3), " square units")
-    print("Volume of a cuboid sides(3,4,6) units\n", cuboid_volume(3, 4, 5), " cubic units")
-    print("Surface area of a cube side=3 units\n", cube_surface_area(3), " square units")
-    print("Perimeter of semi circle diameter=7 units\n", semi_circle_perimeter(diameter=7), " units")
-    print("Area of trapezium parallel_side_1=5 units, parallel_side_2=10 units, height=6 units\n",
-          trapezium_area(5, 10, 6), " square units")
-    print("Volume of a regular pyramid base_length= 3 units, base_width=4 units, height=7 units\n",
-          regular_pyramid_volume(3, 4, 7), " cubic units")
-    print("Volume of an ellipsoid with dimensions (8,5,3) units\n", ellipsoid_volume(8, 5, 3), " cubic units")
+#==============================END===============================================
