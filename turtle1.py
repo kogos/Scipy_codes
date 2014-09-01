@@ -55,4 +55,4 @@ if __name__ == "__main__":
     draw_rectangle(50, 100)
     draw_triangle(70)
     draw_semi_circle(0.5)
-    draw_trapezium(200,100, sqrt(5000), sqrt (5000))
+    draw_trapezium(200, 100, sqrt(5000), sqrt(5000))
