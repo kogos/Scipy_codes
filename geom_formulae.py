@@ -81,7 +81,7 @@ def triangle_area(side_a=None, side_b=None, side_c=None, height=None, angle_thet
     elif (side_a is not None) & (side_b is not None) & (angle_theta is not None):
         area = 0.5*side_a*side_b*sin(angle_theta)
         return area
-    elif (side_a is not None) & (height is not None):
+    elif (base is not None) & (height is not None):
         area = base * height / 2
         return area
     else:
