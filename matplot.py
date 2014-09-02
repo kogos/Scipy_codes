@@ -157,21 +157,24 @@ def cube_surface_area_plot_props(start, end):
 #------------------------------Plot#8------------------------------------
 
 
-def semi_circle_perimeter_plot_props(start, end):
+def semi_circle_plot_props(start, end):
     """
-    Plots the perimeter of a semi circle as a function of radius,
+    Plots the area and perimeter of a semi circle as a function of radius,
     with radius from start to end.
     @param start: starting value.  should be less than end.
     @param end: end value.  should be greater than start.
     @return: None.  Produces a plot.
         """
     v_semi_circle_perimeter = np.vectorize(semi_circle_perimeter)
+    v_semi_circle_area = np.vectorize(semi_circle_area)
     radius = np.linspace(start, end)  # radius of the semi circle
     perimeter = v_semi_circle_perimeter(radius)  # the perimeters
+    area = v_semi_circle_area(radius)  # the perimeters
     plot(radius, perimeter, '-b', label="Perimeter")
+    plot(radius, area, '-r', label="Area")
     xlabel('Radius of the semi circle')
     ylabel('geo values')
-    title('Semi Circle Perimeter Geo Properties')
+    title('Semi Circle Geo Properties')
     legend(loc='upper right')
     show()
     pass
@@ -258,7 +261,7 @@ if __name__ == "__main__":
     triangle_area_plot_props(0, 10)
     cuboid_volume_plot_props(0, 10)
     cube_surface_area_plot_props(0, 10)
-    semi_circle_perimeter_plot_props(0, 10)
+    semi_circle_plot_props(0, 10)
     trapezium_area_plot_props(0, 10)
     regular_pyramid_volume_plot_props(0, 10)
     ellipsoid_volume_plot_props(0, 10)
