@@ -5,7 +5,7 @@ from dimension_validate import *
 #-----------------------------Function 1-----------------------------------------
 
 
-def rectangle_area(length=None, width=None) -> Number:
+def rectangle_area(length: Number, width: Number) -> Number:
     """
     It calculates the area of a rectangle given length and width
     :param length: the length of a rectangle
@@ -15,30 +15,23 @@ def rectangle_area(length=None, width=None) -> Number:
     50
 
     """
-    if not isinstance(length=None) and not isinstance(width=None):
-        if dim_validate(length) and dim_validate(width):
-            return length * width
-        elif dim_validate(length):
-            if not isinstance(width, Number):
-                raise TypeError("The width should be a Number: "+str(width))
-            else:
-                raise ValueError("The width is less than 0: "+str(width))
-        elif dim_validate(width):
-            if not isinstance(length, Number):
-                raise TypeError("The length should be a Number: "+str(length))
-            else:
-                raise ValueError("The length is less than 0: "+str(length))
+    if dim_validate(length) and dim_validate(width):
+        return length * width
+    elif dim_validate(length):
+        if not isinstance(width, Number):
+            raise TypeError("The width should be a Number: "+str(width))
         else:
-            if not isinstance(length, Number) and not isinstance(width, Number):
-                raise TypeError("Both length and width should be Numbers: "+str(length)+","+str(width))
-            else:
-                raise ValueError("Both length and width are less than 0: "+str(length)+","+str(width))
-    elif isinstance(length=None) and isinstance(width=None):
-        raise AttributeError("Length and Width are absent")
-    elif isinstance(length, None) and not isinstance(width, None):
-        raise AttributeError(" Length is absent")
+            raise ValueError("The width is less than 0: "+str(width))
+    elif dim_validate(width):
+        if not isinstance(length, Number):
+            raise TypeError("The length should be a Number: "+str(length))
+        else:
+            raise ValueError("The length is less than 0: "+str(length))
     else:
-        raise AttributeError(" Width is absent")
+        if not isinstance(length, Number) and not isinstance(width, Number):
+            raise TypeError("Both length and width should be Numbers: "+str(length)+","+str(width))
+        else:
+            raise ValueError("Both length and width are less than 0: "+str(length)+","+str(width))
 
 #print("Area of a rectangle length=10 units and width=5 units\n", rectangle_area(), " square units")
 #-----------------------------Function 2-----------------------------------------
@@ -138,6 +131,7 @@ def triangle_area(side_a=None, side_b=None, side_c=None, height=None, angle_thet
 
     """
     if (side_a is not None) & (side_b is not None) & (side_c is not None):
+
         if ((side_a + side_b) > side_c) & ((side_a + side_c) > side_b) & ((side_b + side_c) > side_a):
             s = (side_a + side_b + side_c) / 2
             area = (s * (s - side_a) * (s - side_b) * (s - side_c))**(1/2)
@@ -166,8 +160,16 @@ def cuboid_volume(length: float, width: float, height: float) ->Number:
     60
 
     """
-    return length * width *height
-#print("Volume of a cuboid sides(3,4,6) units\n", cuboid_volume(3, 4, 5), " cubic units")
+    if dim_validate3(length) and dim_validate3(width) and dim_validate3(height):
+        if dim_validate2(length) and dim_validate2(width) and dim_validate2(height):
+            if dim_validate1(length) and dim_validate1(width) and dim_validate1(height):
+                return length * width *height
+            else:
+                raise ValueError("side must be positive: ")
+        raise TypeError('value is a string')
+    raise AttributeError("The dimension is not provided")
+
+#print("Volume of a cuboid sides(3,4,6) units\n", cuboid_volume(3, 4, None), " cubic units")
 #-----------------------------Function 7-----------------------------------------
 
 
@@ -187,7 +189,7 @@ def cube_surface_area(side: Number) ->Number:
             raise TypeError("The side should be a Number: "+str(side))
         else:
             raise ValueError("The side should be positive: "+str(side))
-print("Surface area of a cube side=3 units\n", cube_surface_area(-9), " square units")
+#print("Surface area of a cube side=3 units\n", cube_surface_area(-9), " square units")
 #-----------------------------Function 8-----------------------------------------
 
 
@@ -274,7 +276,15 @@ def trapezium_area(parallel_side_1: float, parallel_side_2: float, height: float
     45.0
 
     """
-    return 0.5*(parallel_side_1+parallel_side_2)*height
+    if dim_validate3(parallel_side_1) and dim_validate3(parallel_side_2) and dim_validate3(height):
+        if dim_validate2(parallel_side_1) and dim_validate2(parallel_side_2) and dim_validate2(height):
+            if dim_validate1(parallel_side_1) and dim_validate1(parallel_side_2) and dim_validate1(height):
+                return 0.5*(parallel_side_1+parallel_side_2)*height
+            else:
+                raise ValueError("side must be positive: ")
+        raise TypeError('value is a string')
+    raise AttributeError("The dimension is not provided")
+#(trapezium_area(5,2,None))
 #-----------------------------Function 11-----------------------------------------
 
 
@@ -289,7 +299,15 @@ def regular_pyramid_volume(base_length: float, base_width: float, height: float)
     28.0
 
     """
-    return base_length*base_width*height/3
+    if dim_validate3(base_length) and dim_validate3(base_width) and dim_validate3(height):
+        if dim_validate2(base_length) and dim_validate2(base_width) and dim_validate2(height):
+            if dim_validate1(base_length) and dim_validate1(base_width) and dim_validate1(height):
+                return base_length*base_width*height/3
+            else:
+                raise ValueError("side must be positive: ")
+        raise TypeError('value is a string')
+    raise AttributeError("The dimension is not provided")
+#print("Volume of a regular pyramid base_length= 3 units, base_width=4 units, height=7 units\n", regular_pyramid_volume(3, 4, -4), " cubic units")
 #-----------------------------Function 12-----------------------------------------
 
 
@@ -304,7 +322,15 @@ def ellipsoid_volume(major_axis: float, minor_axis: float, vertical_axis: float)
     502.65482457436684
 
     """
-    return 4*pi*major_axis*minor_axis*vertical_axis/3
+    if dim_validate3(major_axis) and dim_validate3(minor_axis) and dim_validate3(vertical_axis):
+        if dim_validate2(major_axis) and dim_validate2(minor_axis) and dim_validate2(vertical_axis):
+            if dim_validate1(major_axis) and dim_validate1(minor_axis) and dim_validate1(vertical_axis):
+                return 4*pi*major_axis*minor_axis*vertical_axis/3
+            else:
+                raise ValueError("side must be positive: ")
+        raise TypeError('value is a string')
+    raise AttributeError("The dimension is not provided")
+#print("Volume of an ellipsoid with dimensions (8,5,3) units\n", ellipsoid_volume(8, 5, -9), " cubic units")
 #==============================END===============================================
 
 #if __name__ == "__main__":
