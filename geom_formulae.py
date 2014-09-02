@@ -1,6 +1,5 @@
 __author__ = 'stephen'
 from numpy import *
-from numbers import Number
 from dimension_validate import *
 #-----------------------------Function 1-----------------------------------------
 
@@ -32,8 +31,6 @@ def rectangle_area(length: Number, width: Number) -> Number:
             raise TypeError("Both length and width should be Numbers: "+str(length)+","+str(width))
         else:
             raise ValueError("Both length and width are less than 0: "+str(length)+","+str(width))
-
-#print("Area of a rectangle length=10 units and width=5 units\n", rectangle_area(), " square units")
 #-----------------------------Function 2-----------------------------------------
 
 
@@ -64,9 +61,6 @@ def solid_cone_surface_area(radius: Number, slant_height: Number) -> Number:
             raise TypeError("Both radius and slant_height should be Numbers: "+str(radius)+","+str(slant_height))
         else:
             raise ValueError("Both radius and slant_height are less than 0: "+str(radius)+","+str(slant_height))
-
-#print("Surface area of solid cone radius=4 units and slant_height=9 units\n", solid_cone_surface_area("t","dd"), " square units")
-
 #-----------------------------Function 3-----------------------------------------
 
 
@@ -86,7 +80,6 @@ def sphere_volume(radius: Number) -> Number:
             raise TypeError("The radius should be a Number: "+str(radius))
         else:
             raise ValueError("The radius is less than 0: "+str(radius))
-#print("Volume of sphere radius=7 units\n", sphere_volume(-8), " cubic units")
 #-----------------------------Function 4-----------------------------------------
 
 
@@ -106,46 +99,28 @@ def circle_area(radius: Number) -> Number:
             raise TypeError("The radius should be a Number: "+str(radius))
         else:
             raise ValueError("The radius is less than 0: "+str(radius))
-#print("Area of circle radius=7 units\n", circle_area(-8), " square units")
 #-----------------------------Function 5-----------------------------------------
 
 
-def triangle_area(side_a=None, side_b=None, side_c=None, height=None, angle_theta=None, base=None) -> Number:
+def triangle_area(height=None, base=None) -> Number:
     """
     Calculates the area of a triangle given adequate arguments
-    @param side_a: dimension of first side of the triangle
-    @param side_b: dimension of second side of the triangle
-    @param side_c: dimension of third side of the triangle
     @param height: height of the triangle
-    @param angle_theta: angle given in triangle (in radians)
     @param base: base of the triangle
     @return: The area of the triangle (in square units of the sides)
-    >>> triangle_area(side_a=4, side_b=3,side_c=5)
-    6.0
-
-    >>> triangle_area(side_a=4, side_b=3,angle_theta=pi/2)
-    6.0
-
     >>> triangle_area(base=4, height=3)
     6.0
 
     """
-    if (side_a is not None) & (side_b is not None) & (side_c is not None):
+    if dim_validate3(base) and dim_validate3(height):
+        if dim_validate2(base) and dim_validate2(height):
+            if dim_validate1(base) and dim_validate1(height):
+                return base * height / 2
+            else:
+                raise ValueError("side must be positive: ")
+        raise TypeError('value is a string')
+    raise AttributeError("The dimension is not provided")
 
-        if ((side_a + side_b) > side_c) & ((side_a + side_c) > side_b) & ((side_b + side_c) > side_a):
-            s = (side_a + side_b + side_c) / 2
-            area = (s * (s - side_a) * (s - side_b) * (s - side_c))**(1/2)
-            return area
-        else:
-            return "The sum of two sides of a triangle must be greater that the third side"
-    elif (side_a is not None) & (side_b is not None) & (angle_theta is not None):
-        area = 0.5*side_a*side_b*sin(angle_theta)
-        return area
-    elif (base is not None) & (height is not None):
-        area = base * height / 2
-        return area
-    else:
-        return "The arguments given are inadequate to compute the area"
 #-----------------------------Function 6-----------------------------------------
 
 
@@ -163,13 +138,11 @@ def cuboid_volume(length: float, width: float, height: float) ->Number:
     if dim_validate3(length) and dim_validate3(width) and dim_validate3(height):
         if dim_validate2(length) and dim_validate2(width) and dim_validate2(height):
             if dim_validate1(length) and dim_validate1(width) and dim_validate1(height):
-                return length * width *height
+                return length * width * height
             else:
                 raise ValueError("side must be positive: ")
         raise TypeError('value is a string')
     raise AttributeError("The dimension is not provided")
-
-#print("Volume of a cuboid sides(3,4,6) units\n", cuboid_volume(3, 4, None), " cubic units")
 #-----------------------------Function 7-----------------------------------------
 
 
@@ -189,7 +162,6 @@ def cube_surface_area(side: Number) ->Number:
             raise TypeError("The side should be a Number: "+str(side))
         else:
             raise ValueError("The side should be positive: "+str(side))
-#print("Surface area of a cube side=3 units\n", cube_surface_area(-9), " square units")
 #-----------------------------Function 8-----------------------------------------
 
 
@@ -225,7 +197,6 @@ def semi_circle_perimeter(radius=None, diameter=None):
                 raise TypeError("The diameter should be a Number: "+str(diameter))
             else:
                 raise ValueError("The diameter should be positive: "+str(diameter))
-#print("Perimeter of semi circle diameter=7 units\n", semi_circle_perimeter(diameter=-7), " units")
 #-----------------------------Function 9-----------------------------------------
 
 
@@ -261,7 +232,6 @@ def semi_circle_area(radius=None, diameter=None):
                 raise TypeError("The diameter should be a Number: "+str(diameter))
             else:
                 raise ValueError("The diameter should be positive: "+str(diameter))
-#print("Area of semi circle radius=7 units\n", semi_circle_area(diameter=5), " square units")
 #-----------------------------Function 10-----------------------------------------
 
 
@@ -284,7 +254,6 @@ def trapezium_area(parallel_side_1: float, parallel_side_2: float, height: float
                 raise ValueError("side must be positive: ")
         raise TypeError('value is a string')
     raise AttributeError("The dimension is not provided")
-#(trapezium_area(5,2,None))
 #-----------------------------Function 11-----------------------------------------
 
 
@@ -307,7 +276,6 @@ def regular_pyramid_volume(base_length: float, base_width: float, height: float)
                 raise ValueError("side must be positive: ")
         raise TypeError('value is a string')
     raise AttributeError("The dimension is not provided")
-#print("Volume of a regular pyramid base_length= 3 units, base_width=4 units, height=7 units\n", regular_pyramid_volume(3, 4, -4), " cubic units")
 #-----------------------------Function 12-----------------------------------------
 
 
@@ -330,22 +298,4 @@ def ellipsoid_volume(major_axis: float, minor_axis: float, vertical_axis: float)
                 raise ValueError("side must be positive: ")
         raise TypeError('value is a string')
     raise AttributeError("The dimension is not provided")
-#print("Volume of an ellipsoid with dimensions (8,5,3) units\n", ellipsoid_volume(8, 5, -9), " cubic units")
 #==============================END===============================================
-
-#if __name__ == "__main__":
-    #print("Area of a rectangle length=10 units and width=5 units\n", rectangle_area(5, 5), " square units")
-    #print("Surface area of solid cone radius=4 units and slant_height=9 units\n", solid_cone_surface_area(4, 9),
-    #      " square units")
-    #print("Volume of sphere radius=7 units\n", sphere_volume(7), " cubic units")
-    #print("Area of circle radius=7 units\n", circle_area(7), " square units")
-    #print("Area of triangle sides(4,3,5) units\n", triangle_area(side_a=1, side_b=2, side_c=3), " square units")
-    #print("Volume of a cuboid sides(3,4,6) units\n", cuboid_volume(3, 4, 5), " cubic units")
-    #print("Surface area of a cube side=3 units\n", cube_surface_area(3), " square units")
-    #print("Perimeter of semi circle diameter=7 units\n", semi_circle_perimeter(diameter=7), " units")
-    #print("Area of semi circle radius=7 units\n", semi_circle_area(radius=7), " square units")
-    #print("Area of trapezium parallel_side_1=5 units, parallel_side_2=10 units, height=6 units\n",
-    #      trapezium_area(5, 10, 6), " square units")
-    #print("Volume of a regular pyramid base_length= 3 units, base_width=4 units, height=7 units\n",
-    #     regular_pyramid_volume(3, 4, 7), " cubic units")
-    #print("Volume of an ellipsoid with dimensions (8,5,3) units\n", ellipsoid_volume(8, 5, 3), " cubic units")
