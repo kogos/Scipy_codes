@@ -1,10 +1,11 @@
 __author__ = 'stephen'
 from numpy import *
 from numbers import Number
+from dimension_validate import *
 #-----------------------------Function 1-----------------------------------------
 
 
-def rectangle_area(length: float, width: float) -> Number:
+def rectangle_area(length=None, width=None) -> Number:
     """
     It calculates the area of a rectangle given length and width
     :param length: the length of a rectangle
@@ -14,7 +15,32 @@ def rectangle_area(length: float, width: float) -> Number:
     50
 
     """
-    return length * width
+    if not isinstance(length=None) and not isinstance(width=None):
+        if dim_validate(length) and dim_validate(width):
+            return length * width
+        elif dim_validate(length):
+            if not isinstance(width, Number):
+                raise TypeError("The width should be a Number: "+str(width))
+            else:
+                raise ValueError("The width is less than 0: "+str(width))
+        elif dim_validate(width):
+            if not isinstance(length, Number):
+                raise TypeError("The length should be a Number: "+str(length))
+            else:
+                raise ValueError("The length is less than 0: "+str(length))
+        else:
+            if not isinstance(length, Number) and not isinstance(width, Number):
+                raise TypeError("Both length and width should be Numbers: "+str(length)+","+str(width))
+            else:
+                raise ValueError("Both length and width are less than 0: "+str(length)+","+str(width))
+    elif isinstance(length=None) and isinstance(width=None):
+        raise AttributeError("Length and Width are absent")
+    elif isinstance(length, None) and not isinstance(width, None):
+        raise AttributeError(" Length is absent")
+    else:
+        raise AttributeError(" Width is absent")
+
+#print("Area of a rectangle length=10 units and width=5 units\n", rectangle_area(), " square units")
 #-----------------------------Function 2-----------------------------------------
 
 
@@ -28,7 +54,26 @@ def solid_cone_surface_area(radius: Number, slant_height: Number) -> Number:
     163.36281798666926
 
     """
-    return pi * (radius**2) + pi * radius * slant_height
+    if dim_validate(radius) and dim_validate(slant_height):
+        return pi * (radius**2) + pi * radius * slant_height
+    elif dim_validate(radius):
+        if not isinstance(slant_height, Number):
+            raise TypeError("The slant_height should be a Number: "+str(slant_height))
+        else:
+            raise ValueError("The slant_height is less than 0: "+str(slant_height))
+    elif dim_validate(slant_height):
+        if not isinstance(radius, Number):
+            raise TypeError("The radius should be a Number: "+str(radius))
+        else:
+            raise ValueError("The radius is less than 0: "+str(radius))
+    else:
+        if not isinstance(radius, Number) and not isinstance(slant_height, Number):
+            raise TypeError("Both radius and slant_height should be Numbers: "+str(radius)+","+str(slant_height))
+        else:
+            raise ValueError("Both radius and slant_height are less than 0: "+str(radius)+","+str(slant_height))
+
+#print("Surface area of solid cone radius=4 units and slant_height=9 units\n", solid_cone_surface_area("t","dd"), " square units")
+
 #-----------------------------Function 3-----------------------------------------
 
 
@@ -41,7 +86,14 @@ def sphere_volume(radius: Number) -> Number:
     1436.755040241732
 
     """
-    return 4 * pi * (radius**3) / 3
+    if dim_validate(radius):
+        return 4 * pi * (radius**3) / 3
+    else:
+        if not isinstance(radius, Number):
+            raise TypeError("The radius should be a Number: "+str(radius))
+        else:
+            raise ValueError("The radius is less than 0: "+str(radius))
+#print("Volume of sphere radius=7 units\n", sphere_volume(-8), " cubic units")
 #-----------------------------Function 4-----------------------------------------
 
 
@@ -54,7 +106,14 @@ def circle_area(radius: Number) -> Number:
     153.93804002589985
 
     """
-    return pi * (radius ** 2)
+    if dim_validate(radius):
+        return pi * (radius**2)
+    else:
+        if not isinstance(radius, Number):
+            raise TypeError("The radius should be a Number: "+str(radius))
+        else:
+            raise ValueError("The radius is less than 0: "+str(radius))
+#print("Area of circle radius=7 units\n", circle_area(-8), " square units")
 #-----------------------------Function 5-----------------------------------------
 
 
@@ -107,7 +166,8 @@ def cuboid_volume(length: float, width: float, height: float) ->Number:
     60
 
     """
-    return length*width*height
+    return length * width *height
+#print("Volume of a cuboid sides(3,4,6) units\n", cuboid_volume(3, 4, 5), " cubic units")
 #-----------------------------Function 7-----------------------------------------
 
 
@@ -120,7 +180,14 @@ def cube_surface_area(side: Number) ->Number:
      54
 
     """
-    return 6*side**2
+    if dim_validate(side):
+        return 6*side**2
+    else:
+        if not isinstance(side, Number):
+            raise TypeError("The side should be a Number: "+str(side))
+        else:
+            raise ValueError("The side should be positive: "+str(side))
+print("Surface area of a cube side=3 units\n", cube_surface_area(-9), " square units")
 #-----------------------------Function 8-----------------------------------------
 
 
@@ -138,10 +205,25 @@ def semi_circle_perimeter(radius=None, diameter=None):
 
     """
     if radius is not None:
-        perimeter = pi*radius+2*radius
+        if dim_validate(radius):
+            perimeter = pi*radius+2*radius
+            return perimeter
+        else:
+            if not isinstance(radius, Number):
+                raise TypeError("The radius should be a Number: "+str(radius))
+            else:
+                raise ValueError("The radius should be positive: "+str(radius))
+
     else:
-        perimeter = pi*diameter/2+diameter
-    return perimeter
+        if dim_validate(diameter):
+            perimeter = pi*diameter/2+diameter
+            return perimeter
+        else:
+            if not isinstance(diameter, Number):
+                raise TypeError("The diameter should be a Number: "+str(diameter))
+            else:
+                raise ValueError("The diameter should be positive: "+str(diameter))
+#print("Perimeter of semi circle diameter=7 units\n", semi_circle_perimeter(diameter=-7), " units")
 #-----------------------------Function 9-----------------------------------------
 
 
@@ -159,10 +241,25 @@ def semi_circle_area(radius=None, diameter=None):
 
     """
     if radius is not None:
-        area = pi*(radius**2)/2
+        if dim_validate(radius):
+            area = pi*(radius**2)/2
+            return area
+        else:
+            if not isinstance(radius, Number):
+                raise TypeError("The radius should be a Number: "+str(radius))
+            else:
+                raise ValueError("The radius should be positive: "+str(radius))
+
     else:
-        area = pi*((diameter/2)**2)
-    return area
+        if dim_validate(diameter):
+            area = pi*((diameter/2)**2)
+            return area
+        else:
+            if not isinstance(diameter, Number):
+                raise TypeError("The diameter should be a Number: "+str(diameter))
+            else:
+                raise ValueError("The diameter should be positive: "+str(diameter))
+#print("Area of semi circle radius=7 units\n", semi_circle_area(diameter=5), " square units")
 #-----------------------------Function 10-----------------------------------------
 
 
@@ -209,3 +306,20 @@ def ellipsoid_volume(major_axis: float, minor_axis: float, vertical_axis: float)
     """
     return 4*pi*major_axis*minor_axis*vertical_axis/3
 #==============================END===============================================
+
+#if __name__ == "__main__":
+    #print("Area of a rectangle length=10 units and width=5 units\n", rectangle_area(5, 5), " square units")
+    #print("Surface area of solid cone radius=4 units and slant_height=9 units\n", solid_cone_surface_area(4, 9),
+    #      " square units")
+    #print("Volume of sphere radius=7 units\n", sphere_volume(7), " cubic units")
+    #print("Area of circle radius=7 units\n", circle_area(7), " square units")
+    #print("Area of triangle sides(4,3,5) units\n", triangle_area(side_a=1, side_b=2, side_c=3), " square units")
+    #print("Volume of a cuboid sides(3,4,6) units\n", cuboid_volume(3, 4, 5), " cubic units")
+    #print("Surface area of a cube side=3 units\n", cube_surface_area(3), " square units")
+    #print("Perimeter of semi circle diameter=7 units\n", semi_circle_perimeter(diameter=7), " units")
+    #print("Area of semi circle radius=7 units\n", semi_circle_area(radius=7), " square units")
+    #print("Area of trapezium parallel_side_1=5 units, parallel_side_2=10 units, height=6 units\n",
+    #      trapezium_area(5, 10, 6), " square units")
+    #print("Volume of a regular pyramid base_length= 3 units, base_width=4 units, height=7 units\n",
+    #     regular_pyramid_volume(3, 4, 7), " cubic units")
+    #print("Volume of an ellipsoid with dimensions (8,5,3) units\n", ellipsoid_volume(8, 5, 3), " cubic units")

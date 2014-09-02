@@ -1,6 +1,7 @@
 __author__ = 'stephen'
 from numbers import Number
 from numpy import *
+from dim_validate import *
 
 
 def square_perimeter(side: Number) -> Number:
@@ -13,7 +14,10 @@ def square_perimeter(side: Number) -> Number:
     >>> square_perimeter(4)
     16
     """
-    return 4*side
+    if dim_validate(side):
+        return 4*side
+    else:
+        raise ValueError("side is les than 0: "+str(side))
 
 
 def square_area(side):
@@ -24,7 +28,11 @@ def square_area(side):
     >>> square_area(4)
     16
     """
-    return side*side
+    if dim_validate(side):
+        return side*side
+    else:
+        raise ValueError("side is les than 0: "+str(side))
+print(square_area(-7))
 
 
 def solid_cone_surface_area(radius: Number, slant_height: Number) -> Number:
