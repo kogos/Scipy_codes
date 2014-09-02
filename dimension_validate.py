@@ -47,4 +47,3 @@ def dim_validate3(param):
     """
     if param is not None:
         return True
-
