@@ -22,9 +22,6 @@ def test_circle_area_int():
     assert circle_area(14) == 615.7521601035994
 
 
-eps = 1e-6
-
-
 def test_triangle_area_int():
     assert triangle_area(side_a=3, side_b=4, side_c=5) == 6
     assert triangle_area(base=10, height=3) == 15
@@ -42,8 +39,6 @@ def test_cube_surface_area_int():
 def test_semi_circle_perimeter_int():
     assert semi_circle_perimeter(radius=7) == semi_circle_perimeter(diameter=14)
     assert semi_circle_area(radius=7) > semi_circle_perimeter(radius=7)
-
-eps = 1e-6
 
 
 def test_trapezium_area_double():
