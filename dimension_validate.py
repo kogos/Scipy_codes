@@ -28,6 +28,17 @@ def dim_validate1(param):
     """
     return param >= 0
 
+def dim_validate4(param):
+    """
+    Tests if the number of partitions is even
+    >>> dim_validate4(5)
+    False
+    >>> dim_validate4(6)
+    True
+    """
+    return param % 2 == 0
+
+
 
 def dim_validate2(param):
     """
