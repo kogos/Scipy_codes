@@ -2,6 +2,7 @@ __author__ = 'stephen'
 
 from dimension_validate import *
 from numpy import *
+#----------------------------MIDPOINT--------------------------------------------
 
 
 def midpoint(f: callable, start: (int, float), end: (int, float), partitions: int) -> float:
@@ -19,6 +20,7 @@ def midpoint(f: callable, start: (int, float), end: (int, float), partitions: in
                 raise ValueError("Argument(s) must be positive: ")
         raise TypeError('Argument(s) provided should not be string')
     raise AttributeError("Argument(s) not provided")
+#----------------------------TRAPEZOIDAL--------------------------------------------
 
 
 def trapezoidal(f: callable, start: (int, float), end: (int, float), partitions: int) -> float:
@@ -36,6 +38,7 @@ def trapezoidal(f: callable, start: (int, float), end: (int, float), partitions:
                 raise ValueError("Argument(s) must be positive: ")
         raise TypeError('Argument(s) provided should not be string')
     raise AttributeError("Argument(s) not provided")
+#----------------------------SIMPSON--------------------------------------------
 
 
 def simpson(f: callable, start: (int, float), end: (int, float), partitions: int) -> float:
@@ -61,7 +64,7 @@ def simpson(f: callable, start: (int, float), end: (int, float), partitions: int
             raise ValueError("Argument(s) must be positive: ")
         raise TypeError('Argument(s) provided should not be string')
     raise AttributeError("Argument(s) not provided")
-
+#=====================================END=======================================
 
 if __name__ == "__main__":
     print("MIDPOINT METHOD")
