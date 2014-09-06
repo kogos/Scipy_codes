@@ -104,9 +104,9 @@ class Rectangle(Shape):
     def draw(self):
         i = 0
         while i < 2:
-            turtle.forward(self.length)
-            turtle.left(90)
             turtle.forward(self.width)
+            turtle.left(90)
+            turtle.forward(self.length)
             turtle.left(90)
             i = i + 1
         turtle.done()
@@ -189,7 +189,7 @@ class Semicircle(Shape):
         ax = fig.add_subplot(111)
         paths = Wedge((0, 0), self.radius, 0, 180)
         ax.add_artist(paths)
-        plt.axis([-self.radius, self.radius, 0, self.radius])
+        plt.axis([-self.radius, self.radius, 0, 2*self.radius])
         plt.show()
 
 
@@ -288,6 +288,119 @@ class Cuboid(Solid):
         else:
             return self.length - other.length, self.width - other.width, self.height - other.height
 
+#====================================SPHERE=================================
+
+
+class Sphere(Solid):
+    """a class representation of spheres"""
+    spheres_created = 0
+
+    def __init__(self, radius: (int, float)):
+        super(Sphere, self).__init__(radius=radius)
+        self.spheres_created += 1
+        self.radius = radius
+        self.pi = pi
+        self.surface_area = 4*self.pi*(self.radius**2)
+        self.volume = 4*self.pi*(self.radius**3)/3
+
+    def __str__(self):
+        return super(Sphere, self).__str__() + \
+               "; radius: " + str(self.radius)
+
+    def __cmp__(self, other):
+        if not isinstance(other, Sphere):
+            raise TypeError
+        else:
+            return self.radius - other.radius
+
+
+#====================================CONE=================================
+
+
+class Cone(Solid):
+    """a class representation of cones"""
+    cones_created = 0
+
+    def __init__(self, radius: (int, float), slant_height: (int, float)):
+        super(Cone, self).__init__(radius=radius, slant_height=slant_height)
+        self.cones_created += 1
+        self.radius = radius
+        self.slant_height = slant_height
+        self.pi = pi
+        self.surface_area = pi*self.radius*(self.radius+self.slant_height)
+        self.volume = self.pi*(self.radius**2)*self.slant_height/3
+
+    def __str__(self):
+        return super(Cone, self).__str__() + \
+               "; radius: " + str(self.radius)+"; slant_height: " + str(self.slant_height)
+
+    def __cmp__(self, other):
+        if not isinstance(other, Cone):
+            raise TypeError
+        else:
+            return self.radius - other.radius, self.slant_height - other.slant_height
+
+
+#===================================ELLIPSOID=================================
+
+
+class Ellipsoid(Solid):
+    """a class representation of ellipsoids"""
+    ellipsoids_created = 0
+
+    def __init__(self, major_axis: (int, float), minor_axis: (int, float), vertical_axis: (int, float)):
+        super(Ellipsoid, self).__init__(major_axis=major_axis, minor_axis=minor_axis, vertical_axis=vertical_axis)
+        self.ellipsoids_created += 1
+        self.major_axis = major_axis
+        self.minor_axis = minor_axis
+        self.vertical_axis = vertical_axis
+        self.pi = pi
+        self.surface_area = 4*self.pi*(((((self.major_axis*self.minor_axis)**1.6075)+
+                                         ((self.major_axis*self.vertical_axis)**1.6075)+
+                                         ((self.minor_axis*self.vertical_axis)**1.6075))/3)**(1/1.6075))
+        self.volume = self.major_axis * self.minor_axis * self.vertical_axis
+
+    def __str__(self):
+        return super(Ellipsoid, self).__str__() +"; major_axis: " + str(self.major_axis)+"; minor_axis: " +\
+               str(self.minor_axis)+"; vertical_axis: " + str(self.vertical_axis)
+
+    def __cmp__(self, other):
+        if not isinstance(other, Cuboid):
+            raise TypeError
+        else:
+            return self.major_axis - other.major_axis, self.minor_axis - other.minor_axis,\
+                   self.vertical_axis - other.vertical_axis
+
+
+#===================================PYRAMID=================================
+
+
+class Pyramid(Solid):
+    """a class representation of pyramids"""
+    pyramids_created = 0
+
+    def __init__(self, base_length: (int, float), base_width: (int, float), height: (int, float)):
+        super(Pyramid, self).__init__(base_length=base_length, base_width=base_width, height=height)
+        self.base_length = base_length
+        self.base_width = base_width
+        self.height = height
+        self.sqrt = sqrt
+        self.slant_height1 = self.sqrt((self.height**2)+((0.5*base_length)**2))
+        self.slant_height2 = self.sqrt((self.height**2)+((0.5*base_width)**2))
+        self.surface_area = (self.base_length * self.base_width) + (self.base_length * self.slant_height1) + \
+                            (self.base_width * self.slant_height2)
+        self.volume = self.base_length * self.base_width * self.height /3
+
+    def __str__(self):
+        return super(Pyramid, self).__str__()+"; base_length: " + str(self.base_length)+"; base_width: " +\
+               str(self.base_width)+"; height: " + str(self.height)
+
+    def __cmp__(self, other):
+        if not isinstance(other, Cuboid):
+            raise TypeError
+        else:
+            return self.base_length - other.base_length, self.base_width - other.base_width, self.height - other.height
+
 #====================================END=================================
 
 if __name__ == "__main__":
@@ -297,7 +410,7 @@ if __name__ == "__main__":
     rectangle = Rectangle(50, 70)
     print(rectangle)
     rectangle.draw()
-    triangle = Triangle(300, 400, 500)
+    triangle = Triangle(250, 200, 300)
     print(triangle)
     triangle.draw()
     semicircle = Semicircle(100)
@@ -310,5 +423,13 @@ if __name__ == "__main__":
     print(cube)
     cuboid = Cuboid(100, 200, 500)
     print(cuboid)
+    sphere = Sphere(100)
+    print(sphere)
+    cone = Cone(100, 50)
+    print(cone)
+    ellipsoid = Ellipsoid(50, 60, 70)
+    print(ellipsoid)
+    pyramid = Pyramid(50, 60, 70)
+    print(pyramid)
 
 
