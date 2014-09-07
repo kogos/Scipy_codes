@@ -1,10 +1,8 @@
 __author__ = 'stephen'
-import math
 import turtle
 from numpy import *
 from matplotlib.patches import Wedge
 import matplotlib.pyplot as plt
-# from pylab import *
 
 
 def dim_checker(**kwargs):  # Original idea from Carl Pearson
@@ -41,10 +39,7 @@ class Solid(object):
         self.solids_created += 1
 
     def __str__(self):
-        return self.__class__.__name__ + \
-               "; surface_area: " + str(self.surface_area) + \
-               "; volume: " + str(self.volume)
-
+        return self.__class__.__name__ + "; surface_area: " + str(self.surface_area)+"; volume: " + str(self.volume)
 
 #====================================CIRCLE=================================
 
@@ -331,8 +326,7 @@ class Cone(Solid):
         self.volume = self.pi*(self.radius**2)*self.slant_height/3
 
     def __str__(self):
-        return super(Cone, self).__str__() + \
-               "; radius: " + str(self.radius)+"; slant_height: " + str(self.slant_height)
+        return super(Cone, self).__str__()+"; radius: " + str(self.radius)+"; slant_height: " + str(self.slant_height)
 
     def __cmp__(self, other):
         if not isinstance(other, Cone):
@@ -361,7 +355,7 @@ class Ellipsoid(Solid):
         self.volume = self.major_axis * self.minor_axis * self.vertical_axis
 
     def __str__(self):
-        return super(Ellipsoid, self).__str__() +"; major_axis: " + str(self.major_axis)+"; minor_axis: " +\
+        return super(Ellipsoid, self).__str__()+"; major_axis: " + str(self.major_axis)+"; minor_axis: "+\
                str(self.minor_axis)+"; vertical_axis: " + str(self.vertical_axis)
 
     def __cmp__(self, other):
@@ -387,9 +381,9 @@ class Pyramid(Solid):
         self.sqrt = sqrt
         self.slant_height1 = self.sqrt((self.height**2)+((0.5*base_length)**2))
         self.slant_height2 = self.sqrt((self.height**2)+((0.5*base_width)**2))
-        self.surface_area = (self.base_length * self.base_width) + (self.base_length * self.slant_height1) + \
-                            (self.base_width * self.slant_height2)
-        self.volume = self.base_length * self.base_width * self.height /3
+        self.surface_area = (self.base_length * self.base_width) + (self.base_length * self.slant_height2) + \
+                            (self.base_width * self.slant_height1)
+        self.volume = self.base_length * self.base_width * self.height / 3
 
     def __str__(self):
         return super(Pyramid, self).__str__()+"; base_length: " + str(self.base_length)+"; base_width: " +\
